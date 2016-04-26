@@ -1,0 +1,154 @@
+.calendar {
+    @include margin(20px auto);
+    max-width: 900px;
+}
+
+.calendar__modalContent {
+    display:none;
+
+    &.viewEvent{
+        @include padding(0px);
+    }
+}
+
+.calendar__formSection{
+    @include padding(18px 0 5px 0);
+    @include position(relative);
+    border-bottom: 1px solid $color-border-bottom;
+    color: $color-border-bottom;
+    &.calendar__formSection--radio{
+        border-bottom: none;
+    }
+    &.calendar__formSection--title{
+        @include padding(0px null null null);
+    }
+}
+
+.calendar__fieldIcon{
+    @include size(16px);
+    @include position(absolute, 19px null null 4px);
+}
+
+.calendar__label{
+    font-size: em(9);
+}
+
+.calendar__field{
+    width: 100%;
+    font-size: em(15);
+    border: 0px;
+    &.calendar__field--title{
+        font-size: em(25);
+    }
+    &.calendar__field--time{
+        width: 62px;
+    }
+    &.calendar__field--icon{
+        @include padding(0 0 0 24px)
+    }
+    &.calendar__field--notes{
+        @include padding(null 10px null null);
+    }
+}
+
+.calendar__button{
+    border:none;
+    font-size: em(15);
+    color: #FFF;
+    height: 35px;
+
+    &.calendar__button--cancel{
+        background: #9B9B9B;
+    }
+    &.calendar__button--add{
+        background: #60B700;
+    }
+    &.calendar__button--deleteLink{
+        color: #000;
+        background: transparent;
+    }
+    &.calendar__button--delete{
+        background: #D0021B;
+    }
+}
+
+.calendar__radio{
+    @include position(relative);
+    @include size(75px 30px);
+    display: inline-block;
+}
+
+.calendar__radio label{
+    @include position(absolute, 0px null null 0px);
+    display: block;
+    text-indent: 22px;
+    z-index:1;
+}
+
+.calendar__radio input[type="radio"]{
+    display:none;
+}
+
+.calendar__radio input[type="radio"] + label + svg {
+    @include size(18px 18px);
+    @include position(absolute, 0px null null 0px);
+    cursor: pointer;
+    z-index:0;
+}
+
+.calendar__radio input[type="radio"] + label + svg > use:nth-child(2){
+    display:none;
+}
+
+.calendar__radio input[type="radio"]:checked + label + svg > use:nth-child(2) {
+    display:inline;
+}
+
+.calendar__viewSection{
+    @include padding(18px 15px 5px 0px);
+    @include margin(0px 15px 0px 15px);
+    @include position(relative);
+    border-bottom: 1px solid $color-border-bottom;
+    color: $color-border-bottom;
+    &.calendar__viewSection--notes{
+        @include margin(null null 15px null);
+        span:empty::before{
+            content: "Notes";
+            display: inline-block;
+        }
+    }
+}
+
+@media #{$smartphone-portrait}{
+    .calendar {
+        @include margin(null 10px null 10px);
+        max-width: 100%;
+    }
+    button{
+        &.fc-button{
+            &.fc-corner-right, &.fc-corner-left, &.fc-today-button, &.fc-agendaWeek-button{
+                height: 1.5em;
+            }
+        }
+    }
+    .body--noScroll{
+        overflow: hidden;
+    }
+}
+
+@media #{$smartphone-landscape}{
+    .calendar {
+        @include margin(null 10px null 10px);
+        max-width: 100%;
+    }
+    button{
+        &.fc-button{
+            &.fc-corner-right, &.fc-corner-left, &.fc-today-button, &.fc-agendaWeek-button{
+                height: 1.5em;
+            }
+        }
+    }
+    .body--noScroll{
+        overflow: hidden;
+    }
+}

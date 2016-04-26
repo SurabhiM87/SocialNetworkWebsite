@@ -1,0 +1,22 @@
+/* Type sizes */
+h1{
+    @include margin(0px !important);
+}
+
+h2 {
+    @include margin(0px !important);
+    font-size: em(24px);
+}
+
+h3{
+    @include margin(0px !important);
+    @include padding(5px 0px);
+    font-weight: normal;
+    display:block;
+    color: $white;
+    background-color: #38ABE1;
+    text-indent: 15px;
+    font-size: em(12px);
+    text-transform: uppercase;
+
+}

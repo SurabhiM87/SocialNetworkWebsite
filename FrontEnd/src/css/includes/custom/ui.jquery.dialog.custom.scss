@@ -1,0 +1,102 @@
+.calendar__dialog {
+    @include padding(0px);
+    border: 1px solid #ABAAAB;
+    box-shadow: 0px 2px 4px 0px #ABAAAB ;
+    width: 500px;
+    background: #FFF;
+
+    /* Custom css for jquery ui dialog */
+    .ui-dialog-titlebar {
+        height: 40px;
+        background: #33ACE0;
+        text-align: center;
+
+        .ui-dialog-title{
+            @include padding(1px null null 20px);
+            font-size: em(18pt);
+            color: #FFF;
+        }
+
+        .ui-dialog-titlebar-close {
+            @include position(absolute, 13px 18px null null);
+            @include margin(0px);
+            @include padding(0px);
+            @include size(14px 20px);
+            border:0px;
+            background: none;
+
+            svg{
+                @include size(14px);
+            }
+        }
+    }
+
+    .ui-dialog-content{
+        background: #fff;
+    }
+
+    .ui-dialog-buttonpane {
+        @include margin(0);
+        @include padding(0 15px);
+        background: #fff;
+    }
+
+    .ui-dialog-buttonpane .ui-dialog-buttonset{
+        width: 100%
+    }
+
+    .ui-dialog-buttonpane button {
+        @include span-columns(6);
+
+    }
+
+    .ui-dialog-buttonpane button:nth-child(2) {
+        @include margin(null 0px null null);
+    }
+
+    .ui-dialog-buttonpane button:nth-child(3) {
+        @include span-columns(12);
+    }
+}
+
+@media #{$smartphone-portrait}{
+    .calendar__dialog{
+        height: 100% !important;
+        width: 100% !important;
+        top: 0px !important;
+        left: 0px !important;
+        overflow-y: scroll;
+        .ui-dialog-titlebar{
+            height: 4em;
+            .ui-dialog-title{
+                @include margin(10px null null null null);
+                font-size: em(25pt);
+            }
+            .ui-dialog-titlebar-close {
+                @include position(absolute, 20px 18px null null);
+                @include size(14px 30px);
+            }
+        }
+    }
+}
+
+@media #{$smartphone-landscape}{
+    .calendar__dialog{
+        height: 100% !important;
+        width: 100% !important;
+        top: 0px !important;
+        left: 0px !important;
+        overflow-y: scroll;
+        .ui-dialog-titlebar{
+            height: 4em;
+            .ui-dialog-title{
+                @include margin(10px null null null null);
+                font-size: em(25pt);
+            }
+            .ui-dialog-titlebar-close {
+                @include position(absolute, 20px 18px null null);
+                @include size(14px 30px);
+            }
+        }
+    }
+}

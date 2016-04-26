@@ -1,0 +1,2680 @@
+/* Import variables */
+html {
+  box-sizing: border-box; }
+
+*, *::after, *::before {
+  box-sizing: inherit; }
+
+/*!
+ * FullCalendar v2.6.1 Stylesheet
+ * Docs & License: http://fullcalendar.io/
+ * (c) 2015 Adam Shaw
+ */
+.fc {
+  direction: ltr;
+  text-align: left; }
+
+.fc-rtl {
+  text-align: right; }
+
+body .fc {
+  /* extra precedence to overcome jqui */
+  font-size: 1em; }
+
+/* Colors
+--------------------------------------------------------------------------------------------------*/
+.fc-unthemed th,
+.fc-unthemed td,
+.fc-unthemed thead,
+.fc-unthemed tbody,
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-row,
+.fc-unthemed .fc-popover {
+  border-color: #ddd; }
+
+.fc-unthemed .fc-popover {
+  background-color: #fff; }
+
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-popover .fc-header {
+  background: #eee; }
+
+.fc-unthemed .fc-popover .fc-header .fc-close {
+  color: #666; }
+
+.fc-unthemed .fc-today {
+  background: #fcf8e3; }
+
+.fc-highlight {
+  /* when user is selecting cells */
+  background: #bce8f1;
+  opacity: .3;
+  filter: alpha(opacity=30);
+  /* for IE */ }
+
+.fc-bgevent {
+  /* default look for background events */
+  background: #8fdf82;
+  opacity: .3;
+  filter: alpha(opacity=30);
+  /* for IE */ }
+
+.fc-nonbusiness {
+  /* default look for non-business-hours areas */
+  /* will inherit .fc-bgevent's styles */
+  background: #d7d7d7; }
+
+/* Icons (inline elements with styled text that mock arrow icons)
+--------------------------------------------------------------------------------------------------*/
+.fc-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1em;
+  font-size: 1em;
+  text-align: center;
+  overflow: hidden;
+  font-family: "Courier New", Courier, monospace;
+  /* don't allow browser text-selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/*
+Acceptable font-family overrides for individual icons:
+	"Arial", sans-serif
+	"Times New Roman", serif
+
+NOTE: use percentage font sizes or else old IE chokes
+*/
+.fc-icon:after {
+  position: relative;
+  margin: 0 -1em;
+  /* ensures character will be centered, regardless of width */ }
+
+.fc-icon-left-single-arrow:after {
+  content: "\02039";
+  font-weight: bold;
+  font-size: 200%;
+  top: -7%;
+  left: 3%; }
+
+.fc-icon-right-single-arrow:after {
+  content: "\0203A";
+  font-weight: bold;
+  font-size: 200%;
+  top: -7%;
+  left: -3%; }
+
+.fc-icon-left-double-arrow:after {
+  content: "\000AB";
+  font-size: 160%;
+  top: -7%; }
+
+.fc-icon-right-double-arrow:after {
+  content: "\000BB";
+  font-size: 160%;
+  top: -7%; }
+
+.fc-icon-left-triangle:after {
+  content: "\25C4";
+  font-size: 125%;
+  top: 3%;
+  left: -2%; }
+
+.fc-icon-right-triangle:after {
+  content: "\25BA";
+  font-size: 125%;
+  top: 3%;
+  left: 2%; }
+
+.fc-icon-down-triangle:after {
+  content: "\25BC";
+  font-size: 125%;
+  top: 2%; }
+
+.fc-icon-x:after {
+  content: "\000D7";
+  font-size: 200%;
+  top: 6%; }
+
+/* Buttons (styled <button> tags, normalized to work cross-browser)
+--------------------------------------------------------------------------------------------------*/
+.fc button {
+  /* force height to include the border and padding */
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  /* dimensions */
+  margin: 0;
+  height: 2.1em;
+  padding: 0 .6em;
+  /* text & cursor */
+  font-size: 1em;
+  /* normalize */
+  white-space: nowrap;
+  cursor: pointer; }
+
+/* Firefox has an annoying inner border */
+.fc button::-moz-focus-inner {
+  margin: 0;
+  padding: 0; }
+
+.fc-state-default {
+  /* non-theme */
+  border: 1px solid; }
+
+.fc-state-default.fc-corner-left {
+  /* non-theme */
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px; }
+
+.fc-state-default.fc-corner-right {
+  /* non-theme */
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px; }
+
+/* icons in buttons */
+.fc button .fc-icon {
+  /* non-theme */
+  position: relative;
+  top: -0.05em;
+  /* seems to be a good adjustment across browsers */
+  margin: 0 .2em;
+  vertical-align: middle; }
+
+/*
+  button states
+  borrowed from twitter bootstrap (http://twitter.github.com/bootstrap/)
+*/
+.fc-state-default {
+  background-color: #f5f5f5;
+  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+  background-repeat: repeat-x;
+  border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  color: #333;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); }
+
+.fc-state-hover,
+.fc-state-down,
+.fc-state-active,
+.fc-state-disabled {
+  color: #333333;
+  background-color: #e6e6e6; }
+
+.fc-state-hover {
+  color: #333333;
+  text-decoration: none;
+  background-position: 0 -15px;
+  -webkit-transition: background-position 0.1s linear;
+  -moz-transition: background-position 0.1s linear;
+  -o-transition: background-position 0.1s linear;
+  transition: background-position 0.1s linear; }
+
+.fc-state-down,
+.fc-state-active {
+  background-color: #cccccc;
+  background-image: none;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05); }
+
+.fc-state-disabled {
+  cursor: default;
+  background-image: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  box-shadow: none; }
+
+/* Buttons Groups
+--------------------------------------------------------------------------------------------------*/
+.fc-button-group {
+  display: inline-block; }
+
+/*
+every button that is not first in a button group should scootch over one pixel and cover the
+previous button's border...
+*/
+.fc .fc-button-group > * {
+  /* extra precedence b/c buttons have margin set to zero */
+  float: left;
+  margin: 0 0 0 -1px; }
+
+.fc .fc-button-group > :first-child {
+  /* same */
+  margin-left: 0; }
+
+/* Popover
+--------------------------------------------------------------------------------------------------*/
+.fc-popover {
+  position: absolute;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); }
+
+.fc-popover .fc-header {
+  /* TODO: be more consistent with fc-head/fc-body */
+  padding: 2px 4px; }
+
+.fc-popover .fc-header .fc-title {
+  margin: 0 2px; }
+
+.fc-popover .fc-header .fc-close {
+  cursor: pointer; }
+
+.fc-ltr .fc-popover .fc-header .fc-title,
+.fc-rtl .fc-popover .fc-header .fc-close {
+  float: left; }
+
+.fc-rtl .fc-popover .fc-header .fc-title,
+.fc-ltr .fc-popover .fc-header .fc-close {
+  float: right; }
+
+/* unthemed */
+.fc-unthemed .fc-popover {
+  border-width: 1px;
+  border-style: solid; }
+
+.fc-unthemed .fc-popover .fc-header .fc-close {
+  font-size: .9em;
+  margin-top: 2px; }
+
+/* jqui themed */
+.fc-popover > .ui-widget-header + .ui-widget-content {
+  border-top: 0;
+  /* where they meet, let the header have the border */ }
+
+/* Misc Reusable Components
+--------------------------------------------------------------------------------------------------*/
+.fc-divider {
+  border-style: solid;
+  border-width: 1px; }
+
+hr.fc-divider {
+  height: 0;
+  margin: 0;
+  padding: 0 0 2px;
+  /* height is unreliable across browsers, so use padding */
+  border-width: 1px 0; }
+
+.fc-clear {
+  clear: both; }
+
+.fc-bg,
+.fc-bgevent-skeleton,
+.fc-highlight-skeleton,
+.fc-helper-skeleton {
+  /* these element should always cling to top-left/right corners */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0; }
+
+.fc-bg {
+  bottom: 0;
+  /* strech bg to bottom edge */ }
+
+.fc-bg table {
+  height: 100%;
+  /* strech bg to bottom edge */ }
+
+/* Tables
+--------------------------------------------------------------------------------------------------*/
+.fc table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 1em;
+  /* normalize cross-browser */ }
+
+.fc th {
+  text-align: center; }
+
+.fc th,
+.fc td {
+  border-style: solid;
+  border-width: 1px;
+  padding: 0;
+  vertical-align: top; }
+
+.fc td.fc-today {
+  border-style: double;
+  /* overcome neighboring borders */ }
+
+/* Fake Table Rows
+--------------------------------------------------------------------------------------------------*/
+.fc .fc-row {
+  /* extra precedence to overcome themes w/ .ui-widget-content forcing a 1px border */
+  /* no visible border by default. but make available if need be (scrollbar width compensation) */
+  border-style: solid;
+  border-width: 0; }
+
+.fc-row table {
+  /* don't put left/right border on anything within a fake row.
+	   the outer tbody will worry about this */
+  border-left: 0 hidden transparent;
+  border-right: 0 hidden transparent;
+  /* no bottom borders on rows */
+  border-bottom: 0 hidden transparent; }
+
+.fc-row:first-child table {
+  border-top: 0 hidden transparent;
+  /* no top border on first row */ }
+
+/* Day Row (used within the header and the DayGrid)
+--------------------------------------------------------------------------------------------------*/
+.fc-row {
+  position: relative; }
+
+.fc-row .fc-bg {
+  z-index: 1; }
+
+/* highlighting cells & background event skeleton */
+.fc-row .fc-bgevent-skeleton,
+.fc-row .fc-highlight-skeleton {
+  bottom: 0;
+  /* stretch skeleton to bottom of row */ }
+
+.fc-row .fc-bgevent-skeleton table,
+.fc-row .fc-highlight-skeleton table {
+  height: 100%;
+  /* stretch skeleton to bottom of row */ }
+
+.fc-row .fc-highlight-skeleton td,
+.fc-row .fc-bgevent-skeleton td {
+  border-color: transparent; }
+
+.fc-row .fc-bgevent-skeleton {
+  z-index: 2; }
+
+.fc-row .fc-highlight-skeleton {
+  z-index: 3; }
+
+/*
+row content (which contains day/week numbers and events) as well as "helper" (which contains
+temporary rendered events).
+*/
+.fc-row .fc-content-skeleton {
+  position: relative;
+  z-index: 4;
+  padding-bottom: 2px;
+  /* matches the space above the events */ }
+
+.fc-row .fc-helper-skeleton {
+  z-index: 5; }
+
+.fc-row .fc-content-skeleton td,
+.fc-row .fc-helper-skeleton td {
+  /* see-through to the background below */
+  background: none;
+  /* in case <td>s are globally styled */
+  border-color: transparent;
+  /* don't put a border between events and/or the day number */
+  border-bottom: 0; }
+
+.fc-row .fc-content-skeleton tbody td,
+.fc-row .fc-helper-skeleton tbody td {
+  /* don't put a border between event cells */
+  border-top: 0; }
+
+/* Scrolling Container
+--------------------------------------------------------------------------------------------------*/
+.fc-scroller {
+  /* this class goes on elements for guaranteed vertical scrollbars */
+  overflow-y: scroll;
+  overflow-x: hidden; }
+
+.fc-scroller > * {
+  /* we expect an immediate inner element */
+  position: relative;
+  /* re-scope all positions */
+  width: 100%;
+  /* hack to force re-sizing this inner element when scrollbars appear/disappear */
+  overflow: hidden;
+  /* don't let negative margins or absolute positioning create further scroll */ }
+
+/* Global Event Styles
+--------------------------------------------------------------------------------------------------*/
+.fc-event {
+  position: relative;
+  /* for resize handle and other inner positioning */
+  display: block;
+  /* make the <a> tag block */
+  font-size: .85em;
+  line-height: 1.3;
+  border-radius: 3px;
+  border: 1px solid #3a87ad;
+  /* default BORDER color */
+  background-color: #3a87ad;
+  /* default BACKGROUND color */
+  font-weight: normal;
+  /* undo jqui's ui-widget-header bold */ }
+
+/* overpower some of bootstrap's and jqui's styles on <a> tags */
+.fc-event,
+.fc-event:hover,
+.ui-widget .fc-event {
+  color: #fff;
+  /* default TEXT color */
+  text-decoration: none;
+  /* if <a> has an href */ }
+
+.fc-event[href],
+.fc-event.fc-draggable {
+  cursor: pointer;
+  /* give events with links and draggable events a hand mouse pointer */ }
+
+.fc-not-allowed,
+.fc-not-allowed .fc-event {
+  /* to override an event's custom cursor */
+  cursor: not-allowed; }
+
+.fc-event .fc-bg {
+  /* the generic .fc-bg already does position */
+  z-index: 1;
+  background: #fff;
+  opacity: .25;
+  filter: alpha(opacity=25);
+  /* for IE */ }
+
+.fc-event .fc-content {
+  position: relative;
+  z-index: 2; }
+
+.fc-event .fc-resizer {
+  position: absolute;
+  z-index: 3; }
+
+/* Horizontal Events
+--------------------------------------------------------------------------------------------------*/
+/* events that are continuing to/from another week. kill rounded corners and butt up against edge */
+.fc-ltr .fc-h-event.fc-not-start,
+.fc-rtl .fc-h-event.fc-not-end {
+  margin-left: 0;
+  border-left-width: 0;
+  padding-left: 1px;
+  /* replace the border with padding */
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0; }
+
+.fc-ltr .fc-h-event.fc-not-end,
+.fc-rtl .fc-h-event.fc-not-start {
+  margin-right: 0;
+  border-right-width: 0;
+  padding-right: 1px;
+  /* replace the border with padding */
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0; }
+
+/* resizer */
+.fc-h-event .fc-resizer {
+  /* positioned it to overcome the event's borders */
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+  width: 5px; }
+
+/* left resizer  */
+.fc-ltr .fc-h-event .fc-start-resizer,
+.fc-ltr .fc-h-event .fc-start-resizer:before,
+.fc-ltr .fc-h-event .fc-start-resizer:after,
+.fc-rtl .fc-h-event .fc-end-resizer,
+.fc-rtl .fc-h-event .fc-end-resizer:before,
+.fc-rtl .fc-h-event .fc-end-resizer:after {
+  right: auto;
+  /* ignore the right and only use the left */
+  cursor: w-resize; }
+
+/* right resizer */
+.fc-ltr .fc-h-event .fc-end-resizer,
+.fc-ltr .fc-h-event .fc-end-resizer:before,
+.fc-ltr .fc-h-event .fc-end-resizer:after,
+.fc-rtl .fc-h-event .fc-start-resizer,
+.fc-rtl .fc-h-event .fc-start-resizer:before,
+.fc-rtl .fc-h-event .fc-start-resizer:after {
+  left: auto;
+  /* ignore the left and only use the right */
+  cursor: e-resize; }
+
+/* DayGrid events
+----------------------------------------------------------------------------------------------------
+We use the full "fc-day-grid-event" class instead of using descendants because the event won't
+be a descendant of the grid when it is being dragged.
+*/
+.fc-day-grid-event {
+  margin: 1px 2px 0;
+  /* spacing between events and edges */
+  padding: 0 1px; }
+
+.fc-day-grid-event .fc-content {
+  /* force events to be one-line tall */
+  white-space: nowrap;
+  overflow: hidden; }
+
+.fc-day-grid-event .fc-time {
+  font-weight: bold; }
+
+.fc-day-grid-event .fc-resizer {
+  /* enlarge the default hit area */
+  left: -3px;
+  right: -3px;
+  width: 7px; }
+
+/* Event Limiting
+--------------------------------------------------------------------------------------------------*/
+/* "more" link that represents hidden events */
+a.fc-more {
+  margin: 1px 3px;
+  font-size: .85em;
+  cursor: pointer;
+  text-decoration: none; }
+
+a.fc-more:hover {
+  text-decoration: underline; }
+
+.fc-limited {
+  /* rows and cells that are hidden because of a "more" link */
+  display: none; }
+
+/* popover that appears when "more" link is clicked */
+.fc-day-grid .fc-row {
+  z-index: 1;
+  /* make the "more" popover one higher than this */ }
+
+.fc-more-popover {
+  z-index: 2;
+  width: 220px; }
+
+.fc-more-popover .fc-event-container {
+  padding: 10px; }
+
+/* Now Indicator
+--------------------------------------------------------------------------------------------------*/
+.fc-now-indicator {
+  position: absolute;
+  border: 0 solid red; }
+
+/* Toolbar
+--------------------------------------------------------------------------------------------------*/
+.fc-toolbar {
+  text-align: center;
+  margin-bottom: 1em; }
+
+.fc-toolbar .fc-left {
+  float: left; }
+
+.fc-toolbar .fc-right {
+  float: right; }
+
+.fc-toolbar .fc-center {
+  display: inline-block; }
+
+/* the things within each left/right/center section */
+.fc .fc-toolbar > * > * {
+  /* extra precedence to override button border margins */
+  float: left;
+  margin-left: .75em; }
+
+/* the first thing within each left/center/right section */
+.fc .fc-toolbar > * > :first-child {
+  /* extra precedence to override button border margins */
+  margin-left: 0; }
+
+/* title text */
+.fc-toolbar h2 {
+  margin: 0; }
+
+/* button layering (for border precedence) */
+.fc-toolbar button {
+  position: relative; }
+
+.fc-toolbar .fc-state-hover,
+.fc-toolbar .ui-state-hover {
+  z-index: 2; }
+
+.fc-toolbar .fc-state-down {
+  z-index: 3; }
+
+.fc-toolbar .fc-state-active,
+.fc-toolbar .ui-state-active {
+  z-index: 4; }
+
+.fc-toolbar button:focus {
+  z-index: 5; }
+
+/* View Structure
+--------------------------------------------------------------------------------------------------*/
+/* undo twitter bootstrap's box-sizing rules. normalizes positioning techniques */
+/* don't do this for the toolbar because we'll want bootstrap to style those buttons as some pt */
+.fc-view-container *,
+.fc-view-container *:before,
+.fc-view-container *:after {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box; }
+
+.fc-view,
+.fc-view > table {
+  /* so dragged elements can be above the view's main element */
+  position: relative;
+  z-index: 1; }
+
+/* BasicView
+--------------------------------------------------------------------------------------------------*/
+/* day row structure */
+.fc-basicWeek-view .fc-content-skeleton,
+.fc-basicDay-view .fc-content-skeleton {
+  /* we are sure there are no day numbers in these views, so... */
+  padding-top: 1px;
+  /* add a pixel to make sure there are 2px padding above events */
+  padding-bottom: 1em;
+  /* ensure a space at bottom of cell for user selecting/clicking */ }
+
+.fc-basic-view .fc-body .fc-row {
+  min-height: 4em;
+  /* ensure that all rows are at least this tall */ }
+
+/* a "rigid" row will take up a constant amount of height because content-skeleton is absolute */
+.fc-row.fc-rigid {
+  overflow: hidden; }
+
+.fc-row.fc-rigid .fc-content-skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0; }
+
+/* week and day number styling */
+.fc-basic-view .fc-week-number,
+.fc-basic-view .fc-day-number {
+  padding: 0 2px; }
+
+.fc-basic-view td.fc-week-number span,
+.fc-basic-view td.fc-day-number {
+  padding-top: 2px;
+  padding-bottom: 2px; }
+
+.fc-basic-view .fc-week-number {
+  text-align: center; }
+
+.fc-basic-view .fc-week-number span {
+  /* work around the way we do column resizing and ensure a minimum width */
+  display: inline-block;
+  min-width: 1.25em; }
+
+.fc-ltr .fc-basic-view .fc-day-number {
+  text-align: right; }
+
+.fc-rtl .fc-basic-view .fc-day-number {
+  text-align: left; }
+
+.fc-day-number.fc-other-month {
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+  /* for IE */
+  /* opacity with small font can sometimes look too faded
+	   might want to set the 'color' property instead
+	   making day-numbers bold also fixes the problem */ }
+
+/* AgendaView all-day area
+--------------------------------------------------------------------------------------------------*/
+.fc-agenda-view .fc-day-grid {
+  position: relative;
+  z-index: 2;
+  /* so the "more.." popover will be over the time grid */ }
+
+.fc-agenda-view .fc-day-grid .fc-row {
+  min-height: 3em;
+  /* all-day section will never get shorter than this */ }
+
+.fc-agenda-view .fc-day-grid .fc-row .fc-content-skeleton {
+  padding-top: 1px;
+  /* add a pixel to make sure there are 2px padding above events */
+  padding-bottom: 1em;
+  /* give space underneath events for clicking/selecting days */ }
+
+/* TimeGrid axis running down the side (for both the all-day area and the slot area)
+--------------------------------------------------------------------------------------------------*/
+.fc .fc-axis {
+  /* .fc to overcome default cell styles */
+  vertical-align: middle;
+  padding: 0 4px;
+  white-space: nowrap; }
+
+.fc-ltr .fc-axis {
+  text-align: right; }
+
+.fc-rtl .fc-axis {
+  text-align: left; }
+
+.ui-widget td.fc-axis {
+  font-weight: normal;
+  /* overcome jqui theme making it bold */ }
+
+/* TimeGrid Structure
+--------------------------------------------------------------------------------------------------*/
+.fc-time-grid-container,
+.fc-time-grid {
+  /* so slats/bg/content/etc positions get scoped within here */
+  position: relative;
+  z-index: 1; }
+
+.fc-time-grid {
+  min-height: 100%;
+  /* so if height setting is 'auto', .fc-bg stretches to fill height */ }
+
+.fc-time-grid table {
+  /* don't put outer borders on slats/bg/content/etc */
+  border: 0 hidden transparent; }
+
+.fc-time-grid > .fc-bg {
+  z-index: 1; }
+
+.fc-time-grid .fc-slats,
+.fc-time-grid > hr {
+  /* the <hr> AgendaView injects when grid is shorter than scroller */
+  position: relative;
+  z-index: 2; }
+
+.fc-time-grid .fc-content-col {
+  position: relative;
+  /* because now-indicator lives directly inside */ }
+
+.fc-time-grid .fc-content-skeleton {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  right: 0; }
+
+/* divs within a cell within the fc-content-skeleton */
+.fc-time-grid .fc-business-container {
+  position: relative;
+  z-index: 1; }
+
+.fc-time-grid .fc-bgevent-container {
+  position: relative;
+  z-index: 2; }
+
+.fc-time-grid .fc-highlight-container {
+  position: relative;
+  z-index: 3; }
+
+.fc-time-grid .fc-event-container {
+  position: relative;
+  z-index: 4; }
+
+.fc-time-grid .fc-now-indicator-line {
+  z-index: 5; }
+
+.fc-time-grid .fc-helper-container {
+  /* also is fc-event-container */
+  position: relative;
+  z-index: 6; }
+
+/* TimeGrid Slats (lines that run horizontally)
+--------------------------------------------------------------------------------------------------*/
+.fc-time-grid .fc-slats td {
+  height: 1.5em;
+  border-bottom: 0;
+  /* each cell is responsible for its top border */ }
+
+.fc-time-grid .fc-slats .fc-minor td {
+  border-top-style: dotted; }
+
+.fc-time-grid .fc-slats .ui-widget-content {
+  /* for jqui theme */
+  background: none;
+  /* see through to fc-bg */ }
+
+/* TimeGrid Highlighting Slots
+--------------------------------------------------------------------------------------------------*/
+.fc-time-grid .fc-highlight-container {
+  /* a div within a cell within the fc-highlight-skeleton */
+  position: relative;
+  /* scopes the left/right of the fc-highlight to be in the column */ }
+
+.fc-time-grid .fc-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  /* top and bottom will be in by JS */ }
+
+/* TimeGrid Event Containment
+--------------------------------------------------------------------------------------------------*/
+.fc-ltr .fc-time-grid .fc-event-container {
+  /* space on the sides of events for LTR (default) */
+  margin: 0 2.5% 0 2px; }
+
+.fc-rtl .fc-time-grid .fc-event-container {
+  /* space on the sides of events for RTL */
+  margin: 0 2px 0 2.5%; }
+
+.fc-time-grid .fc-event,
+.fc-time-grid .fc-bgevent {
+  position: absolute;
+  z-index: 1;
+  /* scope inner z-index's */ }
+
+.fc-time-grid .fc-bgevent {
+  /* background events always span full width */
+  left: 0;
+  right: 0; }
+
+/* Generic Vertical Event
+--------------------------------------------------------------------------------------------------*/
+.fc-v-event.fc-not-start {
+  /* events that are continuing from another day */
+  /* replace space made by the top border with padding */
+  border-top-width: 0;
+  padding-top: 1px;
+  /* remove top rounded corners */
+  border-top-left-radius: 0;
+  border-top-right-radius: 0; }
+
+.fc-v-event.fc-not-end {
+  /* replace space made by the top border with padding */
+  border-bottom-width: 0;
+  padding-bottom: 1px;
+  /* remove bottom rounded corners */
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0; }
+
+/* TimeGrid Event Styling
+----------------------------------------------------------------------------------------------------
+We use the full "fc-time-grid-event" class instead of using descendants because the event won't
+be a descendant of the grid when it is being dragged.
+*/
+.fc-time-grid-event {
+  overflow: hidden;
+  /* don't let the bg flow over rounded corners */ }
+
+.fc-time-grid-event .fc-time,
+.fc-time-grid-event .fc-title {
+  padding: 0 1px; }
+
+.fc-time-grid-event .fc-time {
+  font-size: .85em;
+  white-space: nowrap; }
+
+/* short mode, where time and title are on the same line */
+.fc-time-grid-event.fc-short .fc-content {
+  /* don't wrap to second line (now that contents will be inline) */
+  white-space: nowrap; }
+
+.fc-time-grid-event.fc-short .fc-time,
+.fc-time-grid-event.fc-short .fc-title {
+  /* put the time and title on the same line */
+  display: inline-block;
+  vertical-align: top; }
+
+.fc-time-grid-event.fc-short .fc-time span {
+  display: none;
+  /* don't display the full time text... */ }
+
+.fc-time-grid-event.fc-short .fc-time:before {
+  content: attr(data-start);
+  /* ...instead, display only the start time */ }
+
+.fc-time-grid-event.fc-short .fc-time:after {
+  content: "\000A0-\000A0";
+  /* seperate with a dash, wrapped in nbsp's */ }
+
+.fc-time-grid-event.fc-short .fc-title {
+  font-size: .85em;
+  /* make the title text the same size as the time */
+  padding: 0;
+  /* undo padding from above */ }
+
+/* resizer */
+.fc-time-grid-event .fc-resizer {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 8px;
+  overflow: hidden;
+  line-height: 8px;
+  font-size: 11px;
+  font-family: monospace;
+  text-align: center;
+  cursor: s-resize; }
+
+.fc-time-grid-event .fc-resizer:after {
+  content: "="; }
+
+/* Now Indicator
+--------------------------------------------------------------------------------------------------*/
+.fc-time-grid .fc-now-indicator-line {
+  border-top-width: 1px;
+  left: 0;
+  right: 0; }
+
+/* arrow on axis */
+.fc-time-grid .fc-now-indicator-arrow {
+  margin-top: -5px;
+  /* vertically center on top coordinate */ }
+
+.fc-ltr .fc-time-grid .fc-now-indicator-arrow {
+  left: 0;
+  /* triangle pointing right... */
+  border-width: 5px 0 5px 6px;
+  border-top-color: transparent;
+  border-bottom-color: transparent; }
+
+.fc-rtl .fc-time-grid .fc-now-indicator-arrow {
+  right: 0;
+  /* triangle pointing left... */
+  border-width: 5px 6px 5px 0;
+  border-top-color: transparent;
+  border-bottom-color: transparent; }
+
+/*!
+ * jQuery UI CSS Framework 1.11.4
+ * http://jqueryui.com
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/category/theming/
+ */
+/* Layout helpers
+----------------------------------*/
+.ui-helper-hidden {
+  display: none; }
+
+.ui-helper-hidden-accessible {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px; }
+
+.ui-helper-reset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  line-height: 1.3;
+  text-decoration: none;
+  font-size: 100%;
+  list-style: none; }
+
+.ui-helper-clearfix:before,
+.ui-helper-clearfix:after {
+  content: "";
+  display: table;
+  border-collapse: collapse; }
+
+.ui-helper-clearfix:after {
+  clear: both; }
+
+.ui-helper-clearfix {
+  min-height: 0;
+  /* support: IE7 */ }
+
+.ui-helper-zfix {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  opacity: 0;
+  filter: Alpha(Opacity=0);
+  /* support: IE8 */ }
+
+.ui-front {
+  z-index: 100; }
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-disabled {
+  cursor: default !important; }
+
+/* Icons
+----------------------------------*/
+/* states and images */
+.ui-icon {
+  display: block;
+  text-indent: -99999px;
+  overflow: hidden;
+  background-repeat: no-repeat; }
+
+/* Misc visuals
+----------------------------------*/
+/* Overlays */
+.ui-widget-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
+/*!
+ * jQuery UI Datepicker 1.11.4
+ * http://jqueryui.com
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/datepicker/#theming
+ */
+.ui-datepicker {
+  width: 17em;
+  padding: .2em .2em 0;
+  display: none; }
+
+.ui-datepicker .ui-datepicker-header {
+  position: relative;
+  padding: .2em 0; }
+
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+  position: absolute;
+  top: 2px;
+  width: 1.8em;
+  height: 1.8em; }
+
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover {
+  top: 1px; }
+
+.ui-datepicker .ui-datepicker-prev {
+  left: 2px; }
+
+.ui-datepicker .ui-datepicker-next {
+  right: 2px; }
+
+.ui-datepicker .ui-datepicker-prev-hover {
+  left: 1px; }
+
+.ui-datepicker .ui-datepicker-next-hover {
+  right: 1px; }
+
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
+  display: block;
+  position: absolute;
+  left: 50%;
+  margin-left: -8px;
+  top: 50%;
+  margin-top: -8px; }
+
+.ui-datepicker .ui-datepicker-title {
+  margin: 0 2.3em;
+  line-height: 1.8em;
+  text-align: center; }
+
+.ui-datepicker .ui-datepicker-title select {
+  font-size: 1em;
+  margin: 1px 0; }
+
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+  width: 45%; }
+
+.ui-datepicker table {
+  width: 100%;
+  font-size: .9em;
+  border-collapse: collapse;
+  margin: 0 0 .4em; }
+
+.ui-datepicker th {
+  padding: .7em .3em;
+  text-align: center;
+  font-weight: bold;
+  border: 0; }
+
+.ui-datepicker td {
+  border: 0;
+  padding: 1px; }
+
+.ui-datepicker td span,
+.ui-datepicker td a {
+  display: block;
+  padding: .2em;
+  text-align: right;
+  text-decoration: none; }
+
+.ui-datepicker .ui-datepicker-buttonpane {
+  background-image: none;
+  margin: .7em 0 0 0;
+  padding: 0 .2em;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0; }
+
+.ui-datepicker .ui-datepicker-buttonpane button {
+  float: right;
+  margin: .5em .2em .4em;
+  cursor: pointer;
+  padding: .2em .6em .3em .6em;
+  width: auto;
+  overflow: visible; }
+
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+  float: left; }
+
+/* with multiple calendars */
+.ui-datepicker.ui-datepicker-multi {
+  width: auto; }
+
+.ui-datepicker-multi .ui-datepicker-group {
+  float: left; }
+
+.ui-datepicker-multi .ui-datepicker-group table {
+  width: 95%;
+  margin: 0 auto .4em; }
+
+.ui-datepicker-multi-2 .ui-datepicker-group {
+  width: 50%; }
+
+.ui-datepicker-multi-3 .ui-datepicker-group {
+  width: 33.3%; }
+
+.ui-datepicker-multi-4 .ui-datepicker-group {
+  width: 25%; }
+
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header,
+.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header {
+  border-left-width: 0; }
+
+.ui-datepicker-multi .ui-datepicker-buttonpane {
+  clear: left; }
+
+.ui-datepicker-row-break {
+  clear: both;
+  width: 100%;
+  font-size: 0; }
+
+/* RTL support */
+.ui-datepicker-rtl {
+  direction: rtl; }
+
+.ui-datepicker-rtl .ui-datepicker-prev {
+  right: 2px;
+  left: auto; }
+
+.ui-datepicker-rtl .ui-datepicker-next {
+  left: 2px;
+  right: auto; }
+
+.ui-datepicker-rtl .ui-datepicker-prev:hover {
+  right: 1px;
+  left: auto; }
+
+.ui-datepicker-rtl .ui-datepicker-next:hover {
+  left: 1px;
+  right: auto; }
+
+.ui-datepicker-rtl .ui-datepicker-buttonpane {
+  clear: right; }
+
+.ui-datepicker-rtl .ui-datepicker-buttonpane button {
+  float: left; }
+
+.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current,
+.ui-datepicker-rtl .ui-datepicker-group {
+  float: right; }
+
+.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header,
+.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header {
+  border-right-width: 0;
+  border-left-width: 1px; }
+
+/*!
+ * jQuery UI Dialog 1.11.4
+ * http://jqueryui.com
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/dialog/#theming
+ */
+.ui-dialog {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: .2em;
+  outline: 0; }
+
+.ui-dialog .ui-dialog-titlebar {
+  padding: .4em 1em;
+  position: relative; }
+
+.ui-dialog .ui-dialog-title {
+  float: left;
+  margin: .1em 0;
+  white-space: nowrap;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+
+.ui-dialog .ui-dialog-titlebar-close {
+  position: absolute;
+  right: .3em;
+  top: 50%;
+  width: 20px;
+  margin: -10px 0 0 0;
+  padding: 1px;
+  height: 20px; }
+
+.ui-dialog .ui-dialog-content {
+  position: relative;
+  border: 0;
+  padding: .5em 1em;
+  background: none;
+  overflow: auto; }
+
+.ui-dialog .ui-dialog-buttonpane {
+  text-align: left;
+  border-width: 1px 0 0 0;
+  background-image: none;
+  margin-top: .5em;
+  padding: .3em 1em .5em .4em; }
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+  float: right; }
+
+.ui-dialog .ui-dialog-buttonpane button {
+  margin: .5em .4em .5em 0;
+  cursor: pointer; }
+
+.ui-dialog .ui-resizable-se {
+  width: 12px;
+  height: 12px;
+  right: -5px;
+  bottom: -5px;
+  background-position: 16px 16px; }
+
+.ui-draggable .ui-dialog-titlebar {
+  cursor: move; }
+
+/*!
+ * jQuery UI Tooltip 1.11.4
+ * http://jqueryui.com
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/tooltip/#theming
+ */
+.ui-tooltip {
+  padding: 8px;
+  position: absolute;
+  z-index: 9999;
+  max-width: 300px;
+  -webkit-box-shadow: 0 0 5px #aaa;
+  box-shadow: 0 0 5px #aaa; }
+
+body .ui-tooltip {
+  border-width: 2px; }
+
+.ui-timepicker-wrapper {
+  overflow-y: auto;
+  height: 150px;
+  width: 6.5em;
+  background: #fff;
+  border: 1px solid #ddd;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  outline: none;
+  z-index: 10001;
+  margin: 0; }
+
+.ui-timepicker-wrapper.ui-timepicker-with-duration {
+  width: 13em; }
+
+.ui-timepicker-wrapper.ui-timepicker-with-duration.ui-timepicker-step-30,
+.ui-timepicker-wrapper.ui-timepicker-with-duration.ui-timepicker-step-60 {
+  width: 11em; }
+
+.ui-timepicker-list {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.ui-timepicker-duration {
+  margin-left: 5px;
+  color: #888; }
+
+.ui-timepicker-list:hover .ui-timepicker-duration {
+  color: #888; }
+
+.ui-timepicker-list li {
+  padding: 3px 0 3px 5px;
+  cursor: pointer;
+  white-space: nowrap;
+  color: #000;
+  list-style: none;
+  margin: 0; }
+
+.ui-timepicker-list:hover .ui-timepicker-selected {
+  background: #fff;
+  color: #000; }
+
+li.ui-timepicker-selected,
+.ui-timepicker-list li:hover,
+.ui-timepicker-list .ui-timepicker-selected:hover {
+  background: #1980EC;
+  color: #fff; }
+
+li.ui-timepicker-selected .ui-timepicker-duration,
+.ui-timepicker-list li:hover .ui-timepicker-duration {
+  color: #ccc; }
+
+.ui-timepicker-list li.ui-timepicker-disabled,
+.ui-timepicker-list li.ui-timepicker-disabled:hover,
+.ui-timepicker-list li.ui-timepicker-selected.ui-timepicker-disabled {
+  color: #888;
+  cursor: default; }
+
+.ui-timepicker-list li.ui-timepicker-disabled:hover,
+.ui-timepicker-list li.ui-timepicker-selected.ui-timepicker-disabled {
+  background: #f2f2f2; }
+
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS and IE text size adjust after device orientation change,
+ *    without disabling user zoom.
+ */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */ }
+
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0; }
+
+/* HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block; }
+
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */ }
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/10/11, Safari, and Firefox < 22.
+ */
+[hidden],
+template {
+  display: none; }
+
+/* Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+a {
+  background-color: transparent; }
+
+/**
+ * Improve readability of focused elements when they are also in an
+ * active/hover state.
+ */
+a:active,
+a:hover {
+  outline: 0; }
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+ */
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+ */
+b,
+strong {
+  font-weight: bold; }
+
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+dfn {
+  font-style: italic; }
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+mark {
+  background: #ff0;
+  color: #000; }
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+small {
+  font-size: 80%; }
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  top: -0.5em; }
+
+sub {
+  bottom: -0.25em; }
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+img {
+  border: 0; }
+
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+svg:not(:root) {
+  overflow: hidden; }
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+figure {
+  margin: 1em 40px; }
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  box-sizing: content-box;
+  height: 0; }
+
+/**
+ * Contain overflow in all browsers.
+ */
+pre {
+  overflow: auto; }
+
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em; }
+
+/* Forms
+   ========================================================================== */
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */ }
+
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+button {
+  overflow: visible; }
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+button,
+select {
+  text-transform: none; }
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */ }
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled],
+html input[disabled] {
+  cursor: default; }
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+input {
+  line-height: normal; }
+
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto; }
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome.
+ */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  box-sizing: content-box;
+  /* 2 */ }
+
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em; }
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+textarea {
+  overflow: auto; }
+
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+optgroup {
+  font-weight: bold; }
+
+/* Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+td,
+th {
+  padding: 0; }
+
+/* Import variables */
+/* Color Palette */
+/* Colors */
+/* line height */
+/* Font size */
+/* Padding */
+/* Border */
+/* Margin */
+/* Size */
+/* Breakpoints for responsive design*/
+/* Import Sprites Files */
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+.icon-person {
+  background-image: url(/images/icon-sprite.png);
+  background-position: 0px 0px;
+  width: 140px;
+  height: 140px; }
+
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+/* Import Header */
+.header {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background: #38ABE1;
+  height: auto; }
+  .header::after {
+    clear: both;
+    content: "";
+    display: table; }
+  .header .header__logo {
+    float: left;
+    display: block;
+    margin-right: 2.3576515979%;
+    width: 48.821174201%;
+    padding: 35px 0 0 20px;
+    font-size: 2.5em;
+    color: #FFF; }
+    .header .header__logo:last-child {
+      margin-right: 0; }
+    .header .header__logo a {
+      text-decoration: none;
+      color: #FFF; }
+  .header .header__content {
+    float: left;
+    display: block;
+    margin-right: 2.3576515979%;
+    width: 48.821174201%;
+    padding: 0 20px; }
+    .header .header__content:last-child {
+      margin-right: 0; }
+
+@media (max-width: 414px) and (-webkit-min-device-pixel-ratio: 2) {
+  .header .header__logo {
+    font-size: 1.875em; } }
+
+/* Import Calendar */
+.calendar {
+  margin: 20px auto;
+  max-width: 900px; }
+
+.calendar__modalContent {
+  display: none; }
+  .calendar__modalContent.viewEvent {
+    padding: 0px; }
+
+.calendar__formSection {
+  padding: 18px 0 5px;
+  position: relative;
+  border-bottom: 1px solid #ABAAAB;
+  color: #ABAAAB; }
+  .calendar__formSection.calendar__formSection--radio {
+    border-bottom: none; }
+  .calendar__formSection.calendar__formSection--title {
+    padding-top: 0px; }
+
+.calendar__fieldIcon {
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  top: 19px;
+  left: 4px; }
+
+.calendar__label {
+  font-size: 0.5625em; }
+
+.calendar__field {
+  width: 100%;
+  font-size: 0.9375em;
+  border: 0px; }
+  .calendar__field.calendar__field--title {
+    font-size: 1.5625em; }
+  .calendar__field.calendar__field--time {
+    width: 62px; }
+  .calendar__field.calendar__field--icon {
+    padding: 0 0 0 24px; }
+  .calendar__field.calendar__field--notes {
+    padding-right: 10px; }
+
+.calendar__button {
+  border: none;
+  font-size: 0.9375em;
+  color: #FFF;
+  height: 35px; }
+  .calendar__button.calendar__button--cancel {
+    background: #9B9B9B; }
+  .calendar__button.calendar__button--add {
+    background: #60B700; }
+  .calendar__button.calendar__button--deleteLink {
+    color: #000;
+    background: transparent; }
+  .calendar__button.calendar__button--delete {
+    background: #D0021B; }
+
+.calendar__radio {
+  position: relative;
+  height: 30px;
+  width: 75px;
+  display: inline-block; }
+
+.calendar__radio label {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: block;
+  text-indent: 22px;
+  z-index: 1; }
+
+.calendar__radio input[type="radio"] {
+  display: none; }
+
+.calendar__radio input[type="radio"] + label + svg {
+  height: 18px;
+  width: 18px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  cursor: pointer;
+  z-index: 0; }
+
+.calendar__radio input[type="radio"] + label + svg > use:nth-child(2) {
+  display: none; }
+
+.calendar__radio input[type="radio"]:checked + label + svg > use:nth-child(2) {
+  display: inline; }
+
+.calendar__viewSection {
+  padding: 18px 15px 5px 0px;
+  margin: 0px 15px;
+  position: relative;
+  border-bottom: 1px solid #ABAAAB;
+  color: #ABAAAB; }
+  .calendar__viewSection.calendar__viewSection--notes {
+    margin-bottom: 15px; }
+    .calendar__viewSection.calendar__viewSection--notes span:empty::before {
+      content: "Notes";
+      display: inline-block; }
+
+@media (max-width: 414px) and (-webkit-min-device-pixel-ratio: 2) {
+  .calendar {
+    margin-right: 10px;
+    margin-left: 10px;
+    max-width: 100%; }
+  button.fc-button.fc-corner-right, button.fc-button.fc-corner-left, button.fc-button.fc-today-button, button.fc-button.fc-agendaWeek-button {
+    height: 1.5em; }
+  .body--noScroll {
+    overflow: hidden; } }
+
+@media (max-width: 667px) {
+  .calendar {
+    margin-right: 10px;
+    margin-left: 10px;
+    max-width: 100%; }
+  button.fc-button.fc-corner-right, button.fc-button.fc-corner-left, button.fc-button.fc-today-button, button.fc-button.fc-agendaWeek-button {
+    height: 1.5em; }
+  .body--noScroll {
+    overflow: hidden; } }
+
+/* Import panel */
+.panel {
+  padding: 10px;
+  line-height: 20px;
+  text-align: center; }
+  .panel .panel__head {
+    display: inline-block;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e8e8e8;
+    font-size: 25px; }
+  .panel .panel__body {
+    margin: 0px auto;
+    width: 350px;
+    text-align: center;
+    font-size: 14px; }
+    .panel .panel__body .panel__image {
+      display: block;
+      margin-top: 20px;
+      margin-right: auto;
+      margin-left: auto; }
+    .panel .panel__body .panel__divider {
+      margin: 20px auto;
+      width: 300px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 30px; }
+      .panel .panel__body .panel__divider .panel__divider--left, .panel .panel__body .panel__divider .panel__divider--right {
+        margin-top: 10px;
+        width: 40%;
+        border-bottom: 1px solid #979797;
+        float: left; }
+      .panel .panel__body .panel__divider .panel__divider--right {
+        float: right; }
+    .panel .panel__body .panel__link {
+      display: inline-block;
+      padding: 5px;
+      margin-top: 40%;
+      margin-right: auto;
+      background: #F4F4F4;
+      height: 30px; }
+
+/* Import Forms */
+.form {
+  display: block;
+  width: 100%;
+  font-size: 30px;
+  text-align: left;
+  overflow: auto; }
+  .form .form__field {
+    height: 60px;
+    width: 350px;
+    margin: 25px auto 20px;
+    padding-left: 10px;
+    display: block;
+    border: 1px solid #000;
+    font-size: 20px; }
+  .form .form__section {
+    overflow: auto; }
+  .form .form__label {
+    display: none;
+    color: #ABAAAB;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: left; }
+  .form .form__link {
+    display: block;
+    padding-left: 5px;
+    color: #ABAAAB;
+    font-size: 14px; }
+    .form .form__link.form__link--passwordHelp {
+      font-size: 0.75em; }
+  .form .form__paragraph {
+    color: #ABAAAB;
+    font-size: 18px; }
+  .form.form--header .form__label {
+    display: block;
+    font-size: 20px;
+    font-weight: normal;
+    color: #000; }
+  .form.form--header .form__field {
+    margin: 5px 0px;
+    width: 100%;
+    border: 1px solid #000; }
+    .form.form--header .form__field::-webkit-input-placeholder {
+      color: #FFF; }
+    .form.form--header .form__field::-moz-placeholder {
+      color: #FFF; }
+    .form.form--header .form__field:-moz-placeholder {
+      color: #FFF; }
+    .form.form--header .form__field:-ms-input-placeholder {
+      color: #FFF; }
+  .form.form--header .form__section {
+    float: left;
+    display: block;
+    margin-right: 2.3576515979%;
+    width: 38.1589188262%;
+    padding-top: 10px; }
+    .form.form--header .form__section:last-child {
+      margin-right: 0; }
+    .form.form--header .form__section:nth-child(3) {
+      float: left;
+      display: block;
+      margin-right: 2.3576515979%;
+      width: 18.9668591516%;
+      float: right; }
+      .form.form--header .form__section:nth-child(3):last-child {
+        margin-right: 0; }
+  .form.form--header .form__link {
+    color: #000;
+    font-size: 14px; }
+    .form.form--header .form__link.form__link--passwordHelp {
+      font-size: 20px; }
+
+.modalConfirm {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  padding: 15px;
+  z-index: 10;
+  background: #fff; }
+  .modalConfirm p {
+    margin-top: 10px;
+    font-size: 1em;
+    text-align: center; }
+  .modalConfirm input[type="submit"] {
+    float: left;
+    display: block;
+    margin-right: 2.3576515979%;
+    width: 100%;
+    margin-top: 10px; }
+    .modalConfirm input[type="submit"]:last-child {
+      margin-right: 0; }
+
+.datePicker {
+  cursor: pointer; }
+
+.timePicker {
+  cursor: pointer; }
+
+@media (max-width: 414px) and (-webkit-min-device-pixel-ratio: 2) {
+  .modalConfirm {
+    top: 70px !important; } }
+
+@media (max-width: 667px) {
+  .modalConfirm {
+    top: 60px !important; } }
+
+/* Import Image text */
+.imageText {
+  max-width: 68em;
+  margin-left: auto;
+  margin-right: auto;
+  background: #000;
+  background: #000;
+  width: 35%;
+  text-align: center;
+  color: #FFF;
+  font-size: 1.5625em; }
+  .imageText::after {
+    clear: both;
+    content: "";
+    display: table; }
+  .imageText .imageText__image {
+    float: left;
+    display: block;
+    margin-right: 2.3576515979%;
+    width: 23.2317613015%;
+    padding: 20px; }
+    .imageText .imageText__image:last-child {
+      margin-right: 0; }
+    .imageText .imageText__image svg, .imageText .imageText__image img {
+      height: 60px;
+      width: 60px; }
+  .imageText .imageText__text {
+    float: left;
+    display: block;
+    margin-right: 2.3576515979%;
+    width: 74.4105871005%;
+    display: table;
+    height: 100px;
+    line-height: 1.4375em; }
+    .imageText .imageText__text:last-child {
+      margin-right: 0; }
+    .imageText .imageText__text span {
+      display: table-cell;
+      height: inherit;
+      vertical-align: middle; }
+
+/* Validation */
+.parsley__tooltip {
+  background: #000;
+  color: #FFF;
+  text-align: center;
+  font-size: 15px; }
+  .parsley__tooltip:after {
+    height: 0;
+    width: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #000;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    content: ""; }
+
+/* Import Uploader */
+.uploader {
+  width: 300px; }
+  .uploader .button {
+    width: 100%; }
+
+.uploader__progress {
+  height: 20px;
+  width: 100%;
+  display: none;
+  background: #dedede; }
+
+.uploader__progressBar {
+  height: 20px;
+  width: 0%;
+  background: #0f0; }
+
+.uploader__files canvas, .uploader__files video, .uploader__files audio, .uploader__files img {
+  height: 100px;
+  width: 100px; }
+
+/* Import Uploader */
+.picker {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px; }
+  .picker::after {
+    clear: both;
+    content: "";
+    display: table; }
+  .picker select {
+    display: none; }
+
+.picker__itemsContainer {
+  float: left;
+  display: block;
+  margin-right: 2.3576515979%;
+  width: 74.4105871005%; }
+  .picker__itemsContainer:last-child {
+    margin-right: 0; }
+
+.picker__search {
+  position: relative;
+  float: left;
+  display: block;
+  margin-right: 2.3576515979%;
+  width: 100%;
+  padding: 0px 33px 0px 15px;
+  border: 1px solid #ABAAAB; }
+  .picker__search:last-child {
+    margin-right: 0; }
+  .picker__search input {
+    height: 36px;
+    width: 100%;
+    line-height: 36px;
+    font-size: 0.875em;
+    border: 0px; }
+  .picker__search svg {
+    position: absolute;
+    top: 9px;
+    right: 10px;
+    height: 18px;
+    width: 18px; }
+
+.picker__types {
+  float: left;
+  display: block;
+  width: 34.1192171993%;
+  padding: 15px;
+  height: 350px;
+  border: 1px solid #ABAAAB;
+  list-style: none;
+  overflow-y: scroll;
+  position: relative;
+  text-transform: capitalize;
+  line-height: 25px;
+  border-right: 0px; }
+  .picker__types:last-child {
+    width: 31.7615656014%; }
+
+.picker__type {
+  cursor: pointer; }
+  .picker__type.picker__type--selected {
+    font-weight: bold; }
+
+.picker__options {
+  float: left;
+  display: block;
+  width: 68.2384343986%;
+  padding: 0;
+  height: 350px;
+  border: 1px solid #ABAAAB;
+  list-style: none;
+  overflow-y: scroll;
+  position: relative; }
+  .picker__options:last-child {
+    width: 65.8807828007%; }
+
+.picker__option {
+  position: relative;
+  text-transform: capitalize;
+  line-height: 45px;
+  cursor: pointer;
+  text-indent: 45px;
+  border-bottom: 1px solid #ABAAAB; }
+  .picker__option.picker__option--selected {
+    background-color: #F3FFE8; }
+    .picker__option.picker__option--selected .picker__checkboxChecked {
+      display: block; }
+  .picker__option.picker__option--hiddenType, .picker__option.picker__option--hiddenSearch {
+    display: none; }
+
+.picker__icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 25px;
+  width: 25px; }
+
+.picker__remove {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  height: 15px;
+  width: 15px;
+  cursor: pointer; }
+
+.picker__checkbox {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 25px;
+  width: 25px; }
+
+.picker__checkboxChecked {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 25px;
+  width: 25px;
+  display: none; }
+
+.picker__selections {
+  float: left;
+  display: block;
+  margin-right: 2.3576515979%;
+  width: 23.2317613015%;
+  margin: 0;
+  padding: 0;
+  height: 408px;
+  border: 1px solid #ABAAAB;
+  list-style: none;
+  overflow-y: scroll;
+  position: relative; }
+  .picker__selections:last-child {
+    margin-right: 0; }
+
+.picker__selection {
+  margin-bottom: 2px;
+  display: none;
+  text-transform: capitalize;
+  line-height: 45px;
+  cursor: none;
+  text-indent: 45px;
+  background-color: #F4F4F4;
+  position: relative; }
+  .picker__selection.picker__selection--selected {
+    display: block; }
+
+.picker__count {
+  padding-bottom: 20px;
+  text-align: center;
+  line-height: 40px; }
+
+/* Button */
+.button {
+  position: relative;
+  height: 60px;
+  width: 350px;
+  margin: 30px auto 10px;
+  padding: 0;
+  display: block;
+  background: #4A4A4A;
+  color: #FFF;
+  font-size: 25px;
+  border: 1px solid #000;
+  line-height: 60px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer; }
+  .button.button--social {
+    background: #FFF;
+    color: #000;
+    font-size: 20px; }
+  .button.button--header {
+    height: 60px;
+    width: 100%;
+    margin: 28px auto;
+    color: #ABAAAB;
+    font-weight: bold;
+    font-size: 20px; }
+  .button input[type="file"] {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    /* For IE8 and earlier */ }
+
+.button--crop {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  padding: 6px 10px;
+  vertical-align: bottom;
+  z-index: 999;
+  background-color: #de3c50;
+  border: none;
+  color: #FFF; }
+
+/* Type */
+/* Type sizes */
+h1 {
+  margin: 0px !important; }
+
+h2 {
+  margin: 0px !important;
+  font-size: 1.5em; }
+
+h3 {
+  margin: 0px !important;
+  padding: 5px 0px;
+  font-weight: normal;
+  display: block;
+  color: #FFF;
+  background-color: #38ABE1;
+  text-indent: 15px;
+  font-size: 0.75em;
+  text-transform: uppercase; }
+
+/* Profile */
+.profileEditHeader_person {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  margin-bottom: 8px; }
+  .profileEditHeader_person::after {
+    clear: both;
+    content: "";
+    display: table; }
+
+.profileEditHeader__photo {
+  height: 140px;
+  width: 140px;
+  border-radius: 50px;
+  float: left;
+  overflow: hidden; }
+
+.profileEditHeader__image {
+  height: 100%;
+  width: 100%; }
+
+.profileEditHeader__name {
+  padding-left: 20px;
+  height: 140px;
+  width: calc(100% - 140px);
+  float: left;
+  line-height: 140px; }
+
+.profileEditHeader__menu {
+  background: #FFF; }
+
+.profileEditHeader__menuItems {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  padding-left: 0px;
+  list-style: none;
+  width: 100%; }
+  .profileEditHeader__menuItems li {
+    display: inline-block;
+    margin-left: 20px;
+    font-weight: bold; }
+  .profileEditHeader__menuItems li:last-child {
+    margin-right: 15px;
+    float: right;
+    font-weight: normal; }
+
+/* Profile */
+.cropper {
+  position: relative;
+  padding: 10px;
+  background: #ddd;
+  height: 450px;
+  overflow: hidden; }
+
+.cropper__container {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  margin: auto;
+  cursor: move; }
+  .cropper__container > img {
+    display: block; }
+
+.cropper__handle {
+  position: absolute;
+  display: block;
+  height: 10px;
+  width: 10px;
+  background: rgba(222, 60, 80, 0.9);
+  z-index: 999; }
+
+.cropper__handle--nw {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  cursor: nw-resize; }
+
+.cropper__handle--sw {
+  position: absolute;
+  bottom: -5px;
+  left: -5px;
+  cursor: sw-resize; }
+
+.cropper__handle--ne {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  cursor: ne-resize; }
+
+.cropper__handle--se {
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  cursor: se-resize; }
+
+.cropper__overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  z-index: 999;
+  border: dashed 2px rgba(222, 60, 80, 0.9);
+  pointer-events: none; }
+
+/* UI Custom Scss */
+/* Import UI Dialog Custom Scss */
+.calendar__dialog {
+  padding: 0px;
+  border: 1px solid #ABAAAB;
+  box-shadow: 0px 2px 4px 0px #ABAAAB;
+  width: 500px;
+  background: #FFF;
+  /* Custom css for jquery ui dialog */ }
+  .calendar__dialog .ui-dialog-titlebar {
+    height: 40px;
+    background: #33ACE0;
+    text-align: center; }
+    .calendar__dialog .ui-dialog-titlebar .ui-dialog-title {
+      padding-top: 1px;
+      padding-left: 20px;
+      font-size: 1.125em;
+      color: #FFF; }
+    .calendar__dialog .ui-dialog-titlebar .ui-dialog-titlebar-close {
+      position: absolute;
+      top: 13px;
+      right: 18px;
+      margin: 0px;
+      padding: 0px;
+      height: 20px;
+      width: 14px;
+      border: 0px;
+      background: none; }
+      .calendar__dialog .ui-dialog-titlebar .ui-dialog-titlebar-close svg {
+        height: 14px;
+        width: 14px; }
+  .calendar__dialog .ui-dialog-content {
+    background: #fff; }
+  .calendar__dialog .ui-dialog-buttonpane {
+    margin: 0;
+    padding: 0 15px;
+    background: #fff; }
+  .calendar__dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    width: 100%; }
+  .calendar__dialog .ui-dialog-buttonpane button {
+    float: left;
+    display: block;
+    margin-right: 2.3576515979%;
+    width: 48.821174201%; }
+    .calendar__dialog .ui-dialog-buttonpane button:last-child {
+      margin-right: 0; }
+  .calendar__dialog .ui-dialog-buttonpane button:nth-child(2) {
+    margin-right: 0px; }
+  .calendar__dialog .ui-dialog-buttonpane button:nth-child(3) {
+    float: left;
+    display: block;
+    margin-right: 2.3576515979%;
+    width: 100%; }
+    .calendar__dialog .ui-dialog-buttonpane button:nth-child(3):last-child {
+      margin-right: 0; }
+
+@media (max-width: 414px) and (-webkit-min-device-pixel-ratio: 2) {
+  .calendar__dialog {
+    height: 100% !important;
+    width: 100% !important;
+    top: 0px !important;
+    left: 0px !important;
+    overflow-y: scroll; }
+    .calendar__dialog .ui-dialog-titlebar {
+      height: 4em; }
+      .calendar__dialog .ui-dialog-titlebar .ui-dialog-title {
+        margin-top: 10px;
+        font-size: 1.5625em; }
+      .calendar__dialog .ui-dialog-titlebar .ui-dialog-titlebar-close {
+        position: absolute;
+        top: 20px;
+        right: 18px;
+        height: 30px;
+        width: 14px; } }
+
+@media (max-width: 667px) {
+  .calendar__dialog {
+    height: 100% !important;
+    width: 100% !important;
+    top: 0px !important;
+    left: 0px !important;
+    overflow-y: scroll; }
+    .calendar__dialog .ui-dialog-titlebar {
+      height: 4em; }
+      .calendar__dialog .ui-dialog-titlebar .ui-dialog-title {
+        margin-top: 10px;
+        font-size: 1.5625em; }
+      .calendar__dialog .ui-dialog-titlebar .ui-dialog-titlebar-close {
+        position: absolute;
+        top: 20px;
+        right: 18px;
+        height: 30px;
+        width: 14px; } }
+
+/* Import UI Datepicker Custom Scss */
+/* Custom css for jquery ui dialog */
+.ui-datepicker {
+  background: #fff;
+  border: 1px solid #9B9B9B; }
+
+.ui-datepicker-header {
+  background: #dfdfdf;
+  border: 1px solid #9B9B9B;
+  font-weight: bold; }
+
+.ui-datepicker-next-hover {
+  right: 2px !important;
+  top: 2px !important; }
+
+.ui-datepicker-prev-hover {
+  left: 2px !important;
+  top: 2px !important; }
+
+.ui-datepicker-next .ui-icon, .ui-datepicker-prev .ui-icon {
+  height: 100%;
+  width: 100%;
+  cursor: pointer; }
+  .ui-datepicker-next .ui-icon svg, .ui-datepicker-prev .ui-icon svg {
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0; }
+
+.ui-datepicker-calendar .ui-state-default {
+  background: #dfdfdf;
+  border: 1px solid #9B9B9B;
+  color: #000; }
+
+/* Main Styles */
+html, body {
+  min-height: 100%; }
+
+body {
+  background: #F4F4F4; }
+
+.content {
+  padding: 15px;
+  background: #F4F4F4; }
+
+.container {
+  padding: 15px;
+  margin-top: 15px;
+  background: #FFF; }
+
+textarea {
+  box-sizing: border-box;
+  max-height: 78px;
+  min-height: 21px;
+  height: 21px;
+  overflow-x: hidden;
+  resize: none; }
+
+input:focus, button:focus, textarea:focus, select:focus {
+  outline: none; }
+
+/*# sourceMappingURL=app.css.map */

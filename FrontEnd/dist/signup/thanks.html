@@ -1,0 +1,85 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>SportsYou | Thank you</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" type="text/css" href="/css/app.css">
+        <script type="text/javascript"src="/js/app.js"></script>
+        <meta name="msapplication-square70x70logo" content="/images/favicon/windows-tile-70x70.png">
+        <meta name="msapplication-square150x150logo" content="/images/favicon/windows-tile-150x150.png">
+        <meta name="msapplication-square310x310logo" content="/images/favicon/windows-tile-310x310.png">
+        <meta name="msapplication-TileImage" content="/images/favicon/windows-tile-144x144.png">
+        <meta name="msapplication-TileColor" content="#8BA288">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/images/favicon/apple-touch-icon-152x152-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/images/favicon/apple-touch-icon-120x120-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/images/favicon/apple-touch-icon-76x76-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/images/favicon/apple-touch-icon-60x60-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/favicon/apple-touch-icon-144x144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/favicon/apple-touch-icon-114x114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/favicon/apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-touch-icon.png">
+        <link rel="icon" sizes="228x228" href="/images/favicon/coast-icon-228x228.png">
+        <link rel="shortcut icon" href="/images/favicon/favicon.ico">
+        <link rel="icon" type="image/png" sizes="64x64" href="/images/favicon/favicon.png">
+    </head>
+    <body>
+        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TBZ3DK"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TBZ3DK');</script>
+        
+<header class="header">
+    <div class="header__logo"><a href="/welcome.html">sportsyou</a></div>
+    <div class="header__content">
+            <form class="form form--header formAjax loginForm" method="POST" action="auth">
+                <section class="form__section">
+                    <label class="form__label" for="username">Email</label>
+                    <input type="text" name="username" class="form__field" placeholder="Email"
+                           data-parsley-required="true"
+                           data-parsley-type="email"
+                           data-parsley-trigger="keyup"
+                    />
+                    <a href="/signup" class="form__link">Sign Up</a>
+                </section>
+                <section class="form__section">
+                    <label class="form__label" for="password">Password</label>
+                    <input type="password" name="password" class="form__field" placeholder="Password"
+                           data-parsley-required="true"
+                    />
+                    <a href="/resetPassword" class="form__link">Forgot your password</a>
+                </section>
+                <section class="form__section">
+                    <input type="submit" class="button button--header" value="Login" />
+                </section>
+            </form>
+    </div>
+</header>
+
+<div class="panel">
+    <section class="panel__head">
+        <h1>Thanks for signing up</h1>
+        <div class="panel__divider"></div>
+    </section>
+    <section class="panel__body">
+        <svg class="panel__image">
+            <use xlink:href="/images/icons.svg#email"></use>
+        </svg>
+        <h2>You have mail.</h2>
+        <p>We have sent a confirmation email to <a href="mailto:"><span class="qs-email"></span></a>.</p>
+        <p>If you haven't received an email, check your junk/spam folder or
+            <a href="/signup">send the confirmation again</a>.</p>
+        <p>If it was sent to wrong address, click back in your browser and enter a different one.</p>
+        <p class="panel__link">Already have an account? <a href="/login">Login here</a>.</p>
+    </section>
+</div>
+
+        <script type="text/javascript">svg4everybody();</script>
+    </body>
+</html>

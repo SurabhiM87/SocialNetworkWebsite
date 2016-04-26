@@ -1,0 +1,52 @@
+.panel {
+    @include padding($padding-base);
+    line-height: $line-height-panel;
+    text-align: center;
+
+    .panel__head{
+        @include display(inline-block);
+        @include margin(null null 20px null);
+        border-bottom:$border-bottom-form-heading;
+        font-size: $font-size-panel-heading;
+    }
+
+    .panel__body {
+        @include margin($margin-centered );
+        width: $width-panel;
+        text-align: center;
+        font-size: 14px;
+
+        .panel__image{
+            @include display(block);
+            @include margin(20px auto null auto);
+        }
+
+        .panel__divider{
+            @include margin(20px auto);
+            width: 300px;
+            text-align: center;
+            font-weight: bold;
+            font-size: $font-size-base;
+
+            .panel__divider--left {
+                @include margin(10px null null null);
+                width: 40%;
+                border-bottom: $border-bottom-form-divider;
+                float: left;
+            }
+
+            .panel__divider--right {
+                @extend .panel__divider--left;
+                float: right;
+            }
+        }
+
+        .panel__link{
+            @include display(inline-block);
+            @include padding(5px);
+            @include margin(40% auto null null);
+            background: $color-background-panel-link;
+            height: 30px;
+        }
+    }
+}

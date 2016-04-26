@@ -1,0 +1,21 @@
+<form class="form {{#is header true}}form--header {{/is}}formAjax loginForm" method="POST" action="auth">
+    <section class="form__section">
+        <label class="form__label" for="username">Email</label>
+        <input type="text" name="username" class="form__field" placeholder="Email"
+               data-parsley-required="true"
+               data-parsley-type="email"
+               data-parsley-trigger="keyup"
+        />
+        <a href="/signup" class="form__link">Sign Up</a>
+    </section>
+    <section class="form__section">
+        <label class="form__label" for="password">Password</label>
+        <input type="password" name="password" class="form__field" placeholder="Password"
+               data-parsley-required="true"
+        />
+        <a href="/resetPassword" class="form__link">Forgot your password</a>
+    </section>
+    <section class="form__section">
+        <input type="submit" class="button button--header" value="Login" />
+    </section>
+</form>

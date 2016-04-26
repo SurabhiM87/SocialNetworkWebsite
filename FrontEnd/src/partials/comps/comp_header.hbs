@@ -1,0 +1,10 @@
+<header class="header">
+    <div class="header__logo"><a href="/{{#isnt headerLogin false}}welcome{{else}}home{{/isnt}}.html">sportsyou</a></div>
+    <div class="header__content">
+        {{#isnt headerLogin false}}
+            {{> comp_loginForm header=true }}
+        {{else}}
+            {{> comp_logoutForm }}
+        {{/isnt}}
+    </div>
+</header>

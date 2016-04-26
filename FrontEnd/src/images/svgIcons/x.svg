@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.6.1 (26313) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Create-Event" transform="translate(-580.000000, -130.000000)" fill="#233B58">
+            <g id="Popup-Card" transform="translate(306.000000, 116.000000)">
+                <g id="Header-Bar" transform="translate(1.000000, 1.000000)">
+                    <path d="M287,13.8098268 L286.188389,13 L280,19.176585 L273.811588,13 L273,13.8098268 L279.188412,19.9864575 L273,26.1626078 L273.811588,26.9724118 L280,20.7962614 L286.188389,26.9724118 L287,26.1626078 L280.811154,19.9864575 L287,13.8098268 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

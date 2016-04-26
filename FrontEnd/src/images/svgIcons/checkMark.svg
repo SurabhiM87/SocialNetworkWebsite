@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="65px" height="65px" viewBox="0 0 65 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.5.2 (25235) - http://www.bohemiancoding.com/sketch -->
+    <title>tick7</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="4-Forgot-password-success" sketch:type="MSArtboardGroup" transform="translate(-361.000000, -245.000000)" fill="#FFFFFF">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(330.000000, 224.000000)">
+                <g id="Group-2" transform="translate(31.000000, 21.000000)" sketch:type="MSShapeGroup">
+                    <g id="tick7">
+                        <g id="Capa_1">
+                            <g id="check-circle-outline">
+                                <path d="M19.175,26.325 L14.625,30.875 L29.25,45.5 L61.75,13 L57.2,8.45 L29.25,36.4 L19.175,26.325 L19.175,26.325 Z M58.5,32.5 C58.5,46.8 46.8,58.5 32.5,58.5 C18.2,58.5 6.5,46.8 6.5,32.5 C6.5,18.2 18.2,6.5 32.5,6.5 C35.1,6.5 37.375,6.825 39.65,7.475 L44.8501275,2.275 C40.95,0.975 36.725,0 32.5,0 C14.625,0 0,14.625 0,32.5 C0,50.375 14.625,65 32.5,65 C50.375,65 65,50.375 65,32.5 L58.5,32.5 L58.5,32.5 Z" id="Shape"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

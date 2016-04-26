@@ -1,0 +1,129 @@
+@mixin selection-box-style($height){
+    height: $height;
+    border: 1px solid $grey;
+    list-style: none;
+    overflow-y: scroll;
+    position: relative;
+}
+@mixin selection-item-style($cursor){
+    text-transform: capitalize;
+    line-height: 45px;
+    cursor: $cursor;
+    text-indent: 45px;
+}
+
+.picker{
+    @include outer-container(100%);
+    @include padding (0px);
+    select{
+        @include display(none);
+    }
+}
+
+.picker__itemsContainer{
+    @include span-columns(9);
+}
+
+.picker__search{
+    @include position(relative);
+    @include span-columns(12);
+    @include padding (0px 33px 0px 15px);
+    border: 1px solid $grey;
+    input{
+        @include size(100% 36px);
+        line-height:36px;
+        font-size: em(14px);
+        border: 0px;
+    }
+    svg{
+        @include position(absolute, 9px 10px null null);
+        @include size(18px)
+    }
+}
+
+.picker__types{
+    @include span-columns(4, block-collapse);
+    @include padding(15px);
+    @include selection-box-style(350px);
+    text-transform: capitalize;
+    line-height: 25px;
+    border-right:0px;
+}
+
+.picker__type{
+    cursor: pointer;
+    &.picker__type--selected{
+        font-weight:bold;
+    }
+}
+
+.picker__options{
+    @include span-columns(8, block-collapse);
+    @include padding(0);
+    @include selection-box-style(350px);
+}
+
+.picker__option{
+    @include position(relative);
+    @include selection-item-style(pointer);
+    border-bottom: 1px solid $grey;
+
+    &.picker__option--selected{
+        background-color: #F3FFE8;
+
+        .picker__checkboxChecked {
+            @include display(block);
+        }
+    }
+
+    &.picker__option--hiddenType, &.picker__option--hiddenSearch {
+        @include display(none);
+    }
+}
+
+.picker__icon{
+    @include position(absolute, 10px null null 10px);
+    @include size(25px)
+}
+
+.picker__remove{
+    @include position(absolute, 15px 10px null null);
+    @include size(15px);
+    cursor:pointer;
+}
+
+.picker__checkbox {
+    @include position(absolute, 10px 10px null null) ;
+    @include size(25px);
+}
+
+.picker__checkboxChecked{
+    @include position(absolute, 10px 10px null null) ;
+    @include size(25px);
+    @include display(none);
+}
+
+.picker__selections{
+    @include span-columns(3);
+    @include margin(0);
+    @include padding(0);
+    @include selection-box-style(408px);
+}
+
+.picker__selection{
+    @include margin(null null 2px null);
+    @include display(none);
+    @include selection-item-style(none);
+    background-color: $grey-light;
+    position: relative;
+
+    &.picker__selection--selected{
+        @include display(block);
+    }
+}
+
+.picker__count {
+    @include padding(null null 20px null);
+    text-align:center;
+    line-height: 40px;
+}

@@ -1,0 +1,36 @@
+{
+  "name": "mmr",
+  "description": "",
+  "main": "gruntfile.js",
+  "license": "ISC",
+  "moduleType": [
+    "es6"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/js/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "html5shiv": "~3.7.3",
+    "jquery": "~2.2.0",
+    "parsleyjs": "^2.2.0",
+    "handlebars": "~4.0.5",
+    "fullcalendar": "^2.6.1",
+    "moment": "^2.11.2",
+    "svg4everybody": "^2.0.3",
+    "jquery-ui": "^1.11.4",
+    "jt.timepicker": "jquery-timepicker-jt#^1.8.9",
+    "textarea-autosize": "^0.4.1",
+    "bourbon": "^4.2.6",
+    "neat": "^1.7.2",
+    "normalize-css": "https://github.com/necolas/normalize.css.git#^3.0.3",
+    "blueimp-file-upload": "^9.12.1",
+    "datepair.js": "^0.4.14"
+  }
+}

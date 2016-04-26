@@ -1,0 +1,41 @@
+// Configuration File
+var config = {
+    //mssql connection settings
+    database: {
+        user:       '',
+        password:   '',
+        server:     '',
+        db:         ''
+    },
+    //sessions
+    sessions: {
+        secret: ''
+    },
+    //port 80
+    http: {
+        on: true
+    },
+    //cert paths
+    ssl: {
+        on: false,
+        privateKey: '',
+        certificate: ''
+    },
+    //allow headers
+    allowHeaders: {
+        on: true,
+        domain: '
+    },
+    //email
+    email: {
+        checkInterval: 15,
+        globalVariables: {
+            baseURL: ''
+        }
+    },
+    //aws
+    aws:{
+        bucketName:'mmrwebcontent'
+    }
+};
+module.exports = config;

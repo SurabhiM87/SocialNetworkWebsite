@@ -1,0 +1,14 @@
+---
+title: What are some of your favorite sports?
+---
+{{> comp_header headerLogin=false}}
+<div class="content">
+    {{> comp_profileEditHeader}}
+    <div class="container">
+        <h2>What are some of your favorite sports?</h2>
+        <form class="formAjax userSportsForm" action="setUserSports" method="POST">
+            <div class="picker" data-optionsurl="getSports" data-selectedurl="getUserSports" data-selectname="sports"></div>
+            <input type="submit" value="Next" />
+        </form>
+    </div>
+</div>

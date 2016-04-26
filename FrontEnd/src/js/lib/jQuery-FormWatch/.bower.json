@@ -1,0 +1,14 @@
+{
+  "name": "jQuery-FormWatch",
+  "homepage": "https://github.com/kylefox/jQuery-FormWatch",
+  "_release": "583b3917b7",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "583b3917b7c97a1753d3672130f959920e3805a3"
+  },
+  "_source": "https://github.com/kylefox/jQuery-FormWatch.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/kylefox/jQuery-FormWatch.git",
+  "_direct": true
+}

@@ -1,0 +1,118 @@
+.form{
+    @include display(block);
+    width: $width-form;
+    font-size: $font-size-base;
+    text-align: left;
+    overflow:auto;
+
+    .form__field{
+        @include size($size-form-field);
+        @include margin($margin-form-field);
+        @include padding(null null null 10px);
+        @include display(block);
+        border: $border-form-field;
+        font-size: $font-size-form-field;
+    }
+
+    .form__section{
+        overflow:auto;
+    }
+
+    .form__label{
+        display: none;
+        color: $color-form-text;
+        font-size: $font-size-form-label;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .form__link{
+        @include display(block);
+        @include padding(null null null 5px);
+        color: $color-form-text;
+        font-size: $font-size-form-link;
+
+        &.form__link--passwordHelp{
+            font-size: em(12);
+        }
+    }
+
+    .form__paragraph{
+        color: $color-form-text;
+        font-size: $font-size-paragraph;
+    }
+
+    &.form--header{
+        .form__label{
+            @include display(block);
+            font-size: $font-size-header-form-label;
+            font-weight: normal;
+            color: $black;
+        }
+
+        .form__field{
+            @include margin($margin-form-field-header);
+            width: 100%;
+            border: $border-form-field;
+            @include placeholder {
+                color: #FFF;
+            }
+        }
+
+        .form__section{
+            @include span-columns(4.75);
+            @include padding(10px null null null);
+            &:nth-child(3) {
+                @include span-columns(2.5);
+                float:right;
+            }
+        }
+
+        .form__link{
+            color: #000;
+            font-size: $font-size-form-link;
+
+            &.form__link--passwordHelp{
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+.modalConfirm{
+    @include position(absolute, 0px);
+    @include size(100%);
+    @include padding(15px);
+    z-index:10;
+    background: #fff;
+
+    p {
+        @include margin(10px null null null null);
+        font-size: em(16);
+        text-align: center;
+    }
+
+    input[type="submit"]{
+        @include span-columns(12);
+        @include margin(10px null null null null);
+    }
+}
+
+.datePicker{
+    cursor: pointer;
+}
+
+.timePicker{
+    cursor: pointer;
+}
+
+@media #{$smartphone_portrait}{
+    .modalConfirm{
+        top: 70px !important;
+    }
+}
+@media #{$smartphone_landscape}{
+    .modalConfirm{
+        top: 60px !important;
+    }
+}

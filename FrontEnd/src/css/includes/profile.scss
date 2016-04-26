@@ -1,0 +1,45 @@
+
+.profileEditHeader_person{
+    @include outer-container(100%);
+    @include margin(15px null 8px null);
+}
+
+.profileEditHeader__photo{
+    @include size(140px);
+    border-radius: 50px;
+    float:left;
+    overflow: hidden;
+}
+
+.profileEditHeader__image{
+    @include size(100%)
+}
+
+.profileEditHeader__name{
+    @include padding(null null null 20px);
+    @include size(calc(100% - 140px) 140px);
+    float:left;
+    line-height: 140px;
+}
+
+.profileEditHeader__menu{
+    background: $white;
+}
+
+.profileEditHeader__menuItems{
+    @include margin(10px null);
+    @include display(inline-block);
+    @include padding(null null null 0px);
+    list-style: none;
+    width: 100%;
+    li{
+        @include display(inline-block);
+        @include margin(null null null 20px);
+        font-weight: bold;
+    }
+    li:last-child{
+        @include margin(null 15px null null);
+        float: right;
+        font-weight: normal;
+    }
+}

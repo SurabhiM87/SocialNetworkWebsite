@@ -1,0 +1,41 @@
+/* Custom css for jquery ui dialog */
+
+@mixin background-grey-border($background-color){
+    background: $background-color;
+    border:1px solid #9B9B9B;
+}
+
+.ui-datepicker {
+    @include background-grey-border(#fff);
+}
+
+.ui-datepicker-header {
+    @include background-grey-border(#dfdfdf);
+    font-weight:bold;
+}
+
+.ui-datepicker-next-hover {
+    right: 2px !important;
+    top: 2px !important;
+}
+
+.ui-datepicker-prev-hover {
+    left: 2px !important;
+    top: 2px !important;
+}
+
+.ui-datepicker-next, .ui-datepicker-prev {
+    .ui-icon{
+        @include size(100% 100%);
+        cursor:pointer;
+        svg{
+            @include size(16px);
+            @include position(absolute, 0);
+        }
+    }
+}
+
+.ui-datepicker-calendar .ui-state-default {
+    @include background-grey-border(#dfdfdf);
+    color: #000;
+}

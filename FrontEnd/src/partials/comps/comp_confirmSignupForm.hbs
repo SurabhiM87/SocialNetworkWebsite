@@ -1,0 +1,21 @@
+<div class="panel">
+    <div class="panel__head">
+        <h1>Let&apos;s get you setup</h1>
+    </div>
+    <div class="panel__body">
+        <form class="confirmSignupForm formAjax form" method="POST" action="userConfirm" autocomplete="off">
+            <label class="form__label" for="name">Full Name*</label>
+            <input type="text" name="name" id="name" class="form__field" placeholder="Your Full Name"
+                   data-parsley-required="true"
+                   data-parsley-required-message="Enter your full name"
+            />
+            <label class="form__label" for="password">Create a password*</label>
+            <input type="password" name="password" id="password" class="form__field password" placeholder="Create a password"
+                   data-parsley-required="true"
+            />
+            <a href="" class="form__link form__link--passwordHelp">show password</a>
+            <p class="form__paragraph"> By continuing, I confirm I have read and accepted the Terms of Service</p>
+            <input type="submit" class="button" value="START"/>
+        </form>
+    </div>
+</div>

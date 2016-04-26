@@ -1,0 +1,22 @@
+<div class="panel">
+    <div class="panel__head">
+        <h1>Sign Up</h1>
+    </div>
+    <div class="panel__body">
+        <form class="signupForm formAjax form" method="POST" action="userCreate" autocomplete="off">
+            <input type="text" name="email" class="form__field" placeholder="Enter your email"
+                   data-parsley-required="true"
+                   data-parsley-type="email"
+                   data-parsley-trigger="keyup"
+            />
+            <button type="submit" class="button">Start Free</button>
+            {{!--
+            <section class="panel__divider">
+                <div class="panel__divider--left"></div> or <div class="panel__divider--right"></div>
+            </section>
+            <button class="button button--social">Sign up with Facebook</button>
+            <button class="button button--social">Sign up with Google</button>
+            --}}
+        </form>
+    </div>
+</div>

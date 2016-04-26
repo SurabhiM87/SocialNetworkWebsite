@@ -1,0 +1,82 @@
+/* Import variables */
+@import "bowerSCSS";
+@import "bowerCSS";
+
+/* Import variables */
+@import "_variables";
+
+/* Import Sprites Files */
+@import "icon-sprite";
+@import "sports-icon-sprite";
+
+/* Import Header */
+@import "header";
+
+/* Import Calendar */
+@import "calendar";
+
+/* Import panel */
+@import "panel";
+
+/* Import Forms */
+@import "forms";
+
+/* Import Image text */
+@import "imageText";
+
+/* Validation */
+@import "validation";
+
+/* Import Uploader */
+@import "uploader";
+
+/* Import Uploader */
+@import "picker";
+
+/* Button */
+@import "button";
+
+/* Type */
+@import "type";
+
+/* Profile */
+@import "profile";
+
+/* Profile */
+@import "cropper";
+
+/* UI Custom Scss */
+@import "ui.jquery.custom.scss";
+
+/* Main Styles */
+html, body{
+    min-height: 100%;
+}
+
+body{
+    background: $grey-light;
+}
+
+.content {
+    @include padding(15px);
+    background: $grey-light;
+}
+
+.container{
+    @include padding(15px);
+    @include margin(15px null null null);
+    background: $white;
+}
+
+textarea {
+    box-sizing: border-box;
+    max-height: 78px;
+    min-height: 21px;
+    height: 21px;
+    overflow-x: hidden;
+    resize: none;
+}
+
+input:focus, button:focus, textarea:focus, select:focus {
+    outline: none;
+}

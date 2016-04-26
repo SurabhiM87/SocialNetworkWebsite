@@ -1,0 +1,81 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>SportsYou | What are some of your favorite sports?</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" type="text/css" href="/css/app.css">
+        <script type="text/javascript"src="/js/app.js"></script>
+        <meta name="msapplication-square70x70logo" content="/images/favicon/windows-tile-70x70.png">
+        <meta name="msapplication-square150x150logo" content="/images/favicon/windows-tile-150x150.png">
+        <meta name="msapplication-square310x310logo" content="/images/favicon/windows-tile-310x310.png">
+        <meta name="msapplication-TileImage" content="/images/favicon/windows-tile-144x144.png">
+        <meta name="msapplication-TileColor" content="#8BA288">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/images/favicon/apple-touch-icon-152x152-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/images/favicon/apple-touch-icon-120x120-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/images/favicon/apple-touch-icon-76x76-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/images/favicon/apple-touch-icon-60x60-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/favicon/apple-touch-icon-144x144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/favicon/apple-touch-icon-114x114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/favicon/apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-touch-icon.png">
+        <link rel="icon" sizes="228x228" href="/images/favicon/coast-icon-228x228.png">
+        <link rel="shortcut icon" href="/images/favicon/favicon.ico">
+        <link rel="icon" type="image/png" sizes="64x64" href="/images/favicon/favicon.png">
+    </head>
+    <body>
+        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-TBZ3DK"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TBZ3DK');</script>
+        
+<header class="header">
+    <div class="header__logo"><a href="/home.html">sportsyou</a></div>
+    <div class="header__content">
+            <form class="form form--header logoutForm formAjax" method="POST" action="deauth" autocomplete="off">
+                <section class="form__section">
+                    <a href="/profile/edit/sports.html" class="button button--header">Profile</a>
+                </section>
+                <section class="form__section">
+                    <input type="submit" class="button button--header" value="Logout"/>
+                </section>
+            </form>
+    </div>
+</header>
+<div class="content">
+    <div class="profileEditHeader">
+        <div class="profileEditHeader_person">
+            <div class="profileEditHeader__photo">
+                <div class="profileEditHeader__image icon-person"></div>
+            </div>
+            <div class="profileEditHeader__name">
+                <h1>Janet Smith</h1>
+            </div>
+        </div>
+        <div class="profileEditHeader__menu">
+            <h3>Profile</h3>
+            <ul class="profileEditHeader__menuItems">
+                <li>Feed</li>
+                <li>Friends</li>
+                <li>Photos</li>
+                <li>Videos</li>
+                <li>update profile</li>
+            </ul>
+        </div>
+    </div>    <div class="container">
+        <h2>What are some of your favorite sports?</h2>
+        <form class="formAjax userSportsForm" action="setUserSports" method="POST">
+            <div class="picker" data-optionsurl="getSports" data-selectedurl="getUserSports" data-selectname="sports"></div>
+            <input type="submit" value="Next" />
+        </form>
+    </div>
+</div>
+        <script type="text/javascript">svg4everybody();</script>
+    </body>
+</html>

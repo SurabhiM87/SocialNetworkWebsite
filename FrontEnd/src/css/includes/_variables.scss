@@ -1,0 +1,64 @@
+/* Color Palette */
+$grey:          #ABAAAB;
+$grey-dark:     #4A4A4A;
+$grey-medium:   #D8D8D8;
+$grey-light:    #F4F4F4;
+$black:         #000;
+$white:         #FFF;
+$primary-blue:  #38ABE1;
+$green:         #60B700;
+$red:           #D0021B;
+
+/* Colors */
+$color-background-header: $grey-medium;
+$color-background-validation: $black;
+$color-background-panel-link: $grey-light;
+$color-background-form-button: $grey-dark;
+$color-background-form-button-social: $white;
+$color-form-text: $grey;
+$color-border-bottom: $grey;
+
+/* line height */
+$line-height-panel: 20px;
+$line-height-text-with-image: em(23);
+
+/* Font size */
+$font-size-base: 30px;
+$font-size-form-field: 20px;
+$font-size-form-button: 25px;
+$font-size-form-button-header: 20px;
+$font-size-form-button-social: 20px;
+$font-size-paragraph: 18px;
+$font-size-form-label: 25px;
+$font-size-header-form-label: 20px;
+$font-size-form-link: 14px;
+$font-size-panel-heading: 25px;
+
+/* Padding */
+$padding-base: 10px;
+
+/* Border */
+$border-form-field: 1px solid #000;
+$border-button: 1px solid #000;
+$border-bottom-form-heading: 1px solid #e8e8e8;
+$border-bottom-form-divider: 1px solid #979797;
+
+/* Margin */
+$margin-centered: 0px auto;
+$margin-form-field: 25px auto 20px;
+$margin-form-field-header: 5px 0px;
+
+/* Size */
+$size-form-field: 350px 60px;
+$size-form-button: 350px 60px;
+$size-form-button-header: 100% 60px;
+$width-panel: 350px;
+$width-form: 100%;
+$height-header: auto;
+
+
+/* Breakpoints for responsive design*/
+
+$smartphone-portrait: "(max-width: 414px) and (-webkit-min-device-pixel-ratio: 2)";
+
+$smartphone-landscape: "(max-width: 667px)";

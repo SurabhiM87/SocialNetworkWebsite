@@ -1,0 +1,36 @@
+.button{
+    @include position(relative);
+    @include size($size-form-button);
+    @include margin(30px auto 10px auto);
+    @include padding(0);
+    @include display(block);
+    background: $color-background-form-button;
+    color: #FFF;
+    font-size: $font-size-form-button;
+    border: $border-button;
+    line-height: 60px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+
+    &.button--social{
+        background: $color-background-form-button-social;
+        color: #000;
+        font-size: $font-size-form-button-social;
+    }
+
+    &.button--header{
+        @include size($size-form-button-header);
+        @include margin(28px auto);
+        color: $color-form-text;
+        font-weight: bold;
+        font-size: $font-size-form-button-header;
+    }
+
+    input[type="file"]{
+        @include position(absolute, 0px);
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0); /* For IE8 and earlier */
+    }
+}

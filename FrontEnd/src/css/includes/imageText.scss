@@ -1,0 +1,28 @@
+.imageText{
+    @include outer-container;
+    @include background(#000);
+    width: 35%;
+    text-align: center;
+    color: #FFF;
+    font-size: em(25);
+
+    .imageText__image{
+        @include span-columns(3);
+        @include padding(20px);
+        svg, img{
+            @include size(60px);
+        }
+    }
+
+    .imageText__text{
+        @include span-columns(9);
+        @include display(table);
+        height: 100px;
+        line-height: $line-height-text-with-image;
+        span{
+            @include display(table-cell);
+            height: inherit;
+            vertical-align: middle;
+        }
+    }
+}

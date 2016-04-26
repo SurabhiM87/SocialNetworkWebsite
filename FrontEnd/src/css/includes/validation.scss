@@ -1,0 +1,12 @@
+.parsley__tooltip{
+    background: $color-background-validation;
+    color: #FFF;
+    text-align: center;
+    font-size: 15px;
+
+    &:after {
+        @include triangle(16px, $color-background-validation, down);
+        @include position(absolute, 100% null null 50%);
+        content:"";
+    }
+}
